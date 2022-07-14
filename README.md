@@ -34,6 +34,14 @@ set config to your liking
 
 ```js
 // config/index.js (default)
-ROW_LIST_LIMIT = 10 //  default is 10
-COLUMN_LIST_LIMIT = 100 //  default is 100
+ROW_LIST_LIMIT = 10 //  row limit for list view
+COLUMN_LIST_LIMIT = 100 //  column limit for list view
+```
+
+set environment variables
+
+```js
+// .env.development      // development environment
+// .env.production       // production environment
+// .env                  // default environment
 ```
