@@ -1,8 +1,17 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
 
-Vue.config.productionTip = false
+// normalize.css
+import 'normalize.css/normalize.css'
+// 全局样式
+import '@/styles/index.less'
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+import './registerServiceWorker'
+
+const app = createApp(App)
+
+// 按需注册 vant 组件
+import { registerVantComp } from '@/plugins/registerVant'
+registerVantComp(app)
+
+app.mount('#app')
