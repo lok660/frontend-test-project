@@ -11,7 +11,12 @@
       <template #default="item">
         <div class="columnlist-item">
           <div class="columnlist-item-num">{{ item.num }}</div>
-          <img v-lazy="item.imageUrl" alt="" class="columnlist-item-image" />
+          <img
+            v-lazy="item.imageUrl"
+            :class="[item.index % 2 ? 'round' : 'medium']"
+            alt=""
+            class="columnlist-item-image"
+          />
           <div class="columnlist-item-info">
             <div class="columnlist-item-info__title">{{ item.trackName }}</div>
             <div class="columnlist-item-info__category">
@@ -98,6 +103,12 @@ const props = defineProps({
     width: 80px;
     height: 80px;
     margin: 0 20px;
+    &.medium {
+      border-radius: 10%;
+    }
+    &.round {
+      border-radius: 100%;
+    }
   }
   .columnlist-item-info {
     flex: 1;

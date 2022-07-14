@@ -11,10 +11,10 @@
           v-lazy="item['im:image'][0].label"
           class="rowlist-content-item__image"
         />
-        <div class="rowlist-content-item__title ellipsis">
+        <div class="rowlist-content-item__title">
           {{ item['im:name'].label }}
         </div>
-        <div class="rowlist-content-item__category ellipsis">
+        <div class="rowlist-content-item__category">
           {{ item.category.attributes.label }}
         </div>
       </div>

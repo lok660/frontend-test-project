@@ -49,6 +49,7 @@ async function fetchColumnList() {
         category: list[index].category.attributes.label,
         developer: list[index]['im:artist'].label,
         imageUrl: list[index]['im:image'][0].label,
+        index,
         num: index + 1,
       }
     })

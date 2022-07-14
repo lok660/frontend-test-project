@@ -8,7 +8,6 @@
     <div
       v-for="item in renderList"
       :key="item.id"
-      class="virtual-list-item"
       :style="{
         height: `${fixedBlockHeight ? fixedBlockHeight : item.height}px`,
       }"
@@ -312,5 +311,3 @@ export default {
   },
 }
 </script>
-
-<style></style>
