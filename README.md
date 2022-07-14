@@ -35,5 +35,6 @@ set config to your liking
 ```js
 // config/index.js (default)
 ROW_LIST_LIMIT = 10 //  default is 10
+
 COLUMN_LIST_LIMIT = 100 //  default is 100
 ```
