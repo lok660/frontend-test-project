@@ -20,34 +20,42 @@ const listData = reactive({
 })
 
 async function fetchRowList() {
-  const response = await getTopGrossingAppsAPI({
-    limit: ROW_LIST_LIMIT,
-  })
-  listData.originRowList = listData.rowList = response.feed.entry
+  try {
+    const response = await getTopGrossingAppsAPI({
+      limit: ROW_LIST_LIMIT,
+    })
+    listData.originRowList = listData.rowList = response.feed.entry
+  } catch (error) {
+    console.log(error)
+  }
 }
 async function fetchColumnList() {
-  isLoaded.value = false
-  const response = await getTopFreeAppsAPI({
-    limit: COLUMN_LIST_LIMIT,
-  })
+  try {
+    isLoaded.value = false
+    const response = await getTopFreeAppsAPI({
+      limit: COLUMN_LIST_LIMIT,
+    })
 
-  const list = response.feed.entry || []
-  const ids = list.map((item) => item.id.attributes['im:id']).join(',')
-  const detailsResponse = await getAppAPI({ ids })
+    const list = response.feed.entry || []
+    const ids = list.map((item) => item.id.attributes['im:id']).join(',')
+    const detailsResponse = await getAppAPI({ ids })
 
-  listData.originColumnList = listData.columnList = (
-    detailsResponse.results || []
-  ).map((item, index) => {
-    return {
-      ...item,
-      id: list[index].id.attributes['im:id'],
-      category: list[index].category.attributes.label,
-      developer: list[index]['im:artist'].label,
-      imageUrl: list[index]['im:image'][0].label,
-      num: index + 1,
-    }
-  })
-  isLoaded.value = true
+    listData.originColumnList = listData.columnList = (
+      detailsResponse.results || []
+    ).map((item, index) => {
+      return {
+        ...item,
+        id: list[index].id.attributes['im:id'],
+        category: list[index].category.attributes.label,
+        developer: list[index]['im:artist'].label,
+        imageUrl: list[index]['im:image'][0].label,
+        num: index + 1,
+      }
+    })
+    isLoaded.value = true
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 function handleSearch(searchKeywords) {
